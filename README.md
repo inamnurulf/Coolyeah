@@ -4,4 +4,4 @@ Discover the power of Coolyeah, the ultimate app designed to empower students in
 Ketua Kelompok:
 Anggota Kelompok:
 1.  In'am Nurul Fuady (21/479707/TK/52919)
-2. 
+2.  Rhafif Prasetyo   (21/477018/TK/52532)
