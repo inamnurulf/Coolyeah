@@ -7,6 +7,74 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="640" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="20*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Image Grid.ColumnSpan="1" Source="/Views/Logo_Full.png" Width="300"></Image>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Name:" Width="150"/>
+                <TextBox Width="150" BorderBrush="#191D88" BorderThickness="2">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Age:" Width="150"/>
+                <TextBox Width="150" BorderBrush="#191D88" BorderThickness="2">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Sex:" Width="150" />
+                <ComboBox Width="150" BorderBrush="#191D88" BorderThickness="2">
+                    <ComboBoxItem Content="Male" BorderBrush="#191D88" BorderThickness="2"/>
+                    <ComboBoxItem Content="Female" BorderBrush="#191D88" BorderThickness="2"/>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="150">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="75" >
+                    <TextBlock  Text="Height:" Width="50"/>
+                    <TextBox Width="50" BorderBrush="#191D88" BorderThickness="2">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="3"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Width="75" HorizontalAlignment="Right">
+                    <TextBlock Text="Weight:" Width="50"/>
+                    <TextBox Width="50" BorderBrush="#191D88" BorderThickness="2">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="3"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
 
     </Grid>
 </Window>

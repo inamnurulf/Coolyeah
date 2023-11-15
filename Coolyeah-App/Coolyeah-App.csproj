@@ -9,8 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\" />
+    <None Remove="Assets\Logo_Full.png" />
+    <None Remove="Views\Logo_Full.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Logo_Full.png" />
+    <Resource Include="Views\Logo_Full.png" />
   </ItemGroup>
 
 </Project>
