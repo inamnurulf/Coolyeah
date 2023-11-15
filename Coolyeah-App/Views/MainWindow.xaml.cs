@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Coolyeah_App.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,13 @@ namespace Coolyeah_App
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            HomeWindow homeWindow = new HomeWindow();
+            homeWindow.Show();
+            Close();
         }
     }
 }
