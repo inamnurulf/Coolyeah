@@ -24,7 +24,18 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <ScrollViewer Grid.Row="0">
-                <DataGrid ItemsSource="{Binding MyDataCollection}"/>
+                <DataGrid ItemsSource="{Binding MyDataCollection}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Actions">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Delete" Command="{Binding DataContext.DeleteItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
+                                            CommandParameter="{Binding}" Background="Red" Foreground="White"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </ScrollViewer>
             <Border Grid.Row="1">
                 <StackPanel>

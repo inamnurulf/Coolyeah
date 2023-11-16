@@ -16,6 +16,7 @@ namespace Coolyeah_App.ViewModels
     class DietViewModel : INotifyPropertyChanged
     {
         public ICommand AddNewItemCommand { get; set; }
+        public ICommand DeleteItemCommand { get; set; }
 
         public ObservableCollection<Food> MyDataCollection { get; set; }
 
@@ -57,6 +58,7 @@ namespace Coolyeah_App.ViewModels
             _sqliteHelper = new DataBase("\\db\\coolyeah.db");
             _sqliteHelper.CreateTableFood(); 
             AddNewItemCommand = new RelayCommand(AddNewItem);
+            DeleteItemCommand = new RelayCommand(DeleteItem);
             MyDataCollection = new ObservableCollection<Food>();
             FetchData();
 
@@ -90,6 +92,15 @@ namespace Coolyeah_App.ViewModels
             foreach (var item in dbData)
             {
                 MyDataCollection.Add(item);
+            }
+        }
+
+        private void DeleteItem(object parameter)
+        {
+            if (parameter is Food foodToDelete)
+            {
+                _sqliteHelper.DeleteFood(foodToDelete.id);
+                MyDataCollection.Remove(foodToDelete);
             }
         }
 

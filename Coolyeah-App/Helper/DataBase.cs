@@ -83,6 +83,17 @@ namespace Coolyeah_App.Helper
             return foods;
         }
 
+        public void DeleteFood(int id)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "DELETE FROM Food WHERE id = @id";
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+            }
+        }
+
+
         public void CreateTableDrink()
         {
             using (var command = _connection.CreateCommand())
@@ -132,6 +143,18 @@ namespace Coolyeah_App.Helper
             }
             return drinks;
         }
+
+        public void DeleteDrink(int id)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "DELETE FROM Drink WHERE id = @id";
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+            }
+        }
+
+
         public void CreateTableActivity()
         {
             using (var command = _connection.CreateCommand())
@@ -175,6 +198,17 @@ namespace Coolyeah_App.Helper
             return activities;
         }
 
+        public void DeleteActivity(int id)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "DELETE FROM Activity WHERE id = @id";
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+            }
+        }
+
+
         public void CreateTableSleep()
         {
             using (var command = _connection.CreateCommand())
@@ -216,6 +250,15 @@ namespace Coolyeah_App.Helper
                 }
             }
             return sleeps;
+        }
+        public void DeleteSleep(int id)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "DELETE FROM Sleep WHERE id = @id";
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+            }
         }
 
 

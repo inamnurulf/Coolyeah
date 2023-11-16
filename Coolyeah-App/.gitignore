@@ -14,6 +14,8 @@
 *.userosscache
 *.sln.docstates
 *.db
+/db/coolyeah.db
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
