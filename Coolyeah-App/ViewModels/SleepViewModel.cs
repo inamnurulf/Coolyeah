@@ -58,7 +58,59 @@ namespace Coolyeah_App.ViewModels
             AddNewItemCommand = new RelayCommand(AddNewItem);
             DeleteItemCommand = new RelayCommand(DeleteItem);
             MyDataCollection = new ObservableCollection<Sleep>();
+            SetIdealValue();
+            UpdateCurrentValue();
             FetchData();
+        }
+
+        private int _currentValue;
+
+        public int CurrentValue
+        {
+            get { return _currentValue; }
+            set
+            {
+                if (_currentValue != value)
+                {
+                    _currentValue = value;
+                    OnPropertyChanged(nameof(CurrentValue));
+                }
+            }
+        }
+
+        private int _idealValue;
+
+        public int IdealValue
+        {
+            get { return _idealValue; }
+            set
+            {
+                if (_idealValue != value)
+                {
+                    _idealValue = value;
+                    OnPropertyChanged(nameof(IdealValue));
+                }
+            }
+        }
+
+        private void SetIdealValue()
+        {
+            User user = _sqliteHelper.GetUser();
+            if (user == null) { return; }
+            if (user.Sex == "Male")
+            {
+                IdealValue = 8;
+            }
+            else
+            {
+                IdealValue = 8;
+            }
+
+        }
+
+        private void UpdateCurrentValue()
+        {
+            CurrentValue = MyDataCollection.Sum(sleep => sleep.Value);
         }
 
         private void AddNewItem(object parameter)
@@ -88,15 +140,21 @@ namespace Coolyeah_App.ViewModels
             {
                 MyDataCollection.Add(item);
             }
+
+            UpdateCurrentValue();
         }
 
         private void DeleteItem(object parameter)
         {
+            MessageBox.Show("");
             if (parameter is Sleep SleepToDelete)
             {
-                _sqliteHelper.DeleteFood(SleepToDelete.id);
+                _sqliteHelper.DeleteSleep(SleepToDelete.id);
                 MyDataCollection.Remove(SleepToDelete);
+                UpdateCurrentValue();
+
             }
+;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -41,6 +41,7 @@ namespace Coolyeah_App.Helper
             string dbPath = result + databasePath;
             _connection = new SQLiteConnection($"Data Source={dbPath};Version=3;");
             _connection.Open();
+            this.CreateTableUser();
         }
 
         public void Dispose()
