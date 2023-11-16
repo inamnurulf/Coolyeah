@@ -14,7 +14,7 @@ namespace Coolyeah_App.Helper
         {
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-            string dbPath = "D:\\kuliah\\sem 5\\coolyeah updated\\Coolyeah\\Coolyeah-App" + databasePath;
+            string dbPath = "D:\\UGM\\Matkul\\Semester 5\\Junior Project\\Coolyeah\\Coolyeah\\Coolyeah-App" + databasePath;
             _connection = new SQLiteConnection($"Data Source={dbPath};Version=3;");
             _connection.Open();
         }
