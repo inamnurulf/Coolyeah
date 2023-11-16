@@ -24,7 +24,7 @@
             <Image Grid.ColumnSpan="1" Source="/Assets/Logo_Full.png" Width="300"></Image>
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Name:" Width="150"/>
-                <TextBox Width="150" BorderBrush="#191D88" BorderThickness="2">
+                <TextBox Width="150" BorderBrush="#191D88" BorderThickness="2" Name="txtName">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -35,7 +35,7 @@
 
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Age:" Width="150"/>
-                <TextBox Width="150" BorderBrush="#191D88" BorderThickness="2">
+                <TextBox Width="150" BorderBrush="#191D88" BorderThickness="2" Name="txtAge">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -46,7 +46,7 @@
 
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Sex:" Width="150" />
-                <ComboBox Width="150" BorderBrush="#191D88" BorderThickness="2">
+                <ComboBox Width="150" BorderBrush="#191D88" BorderThickness="2" Name="comboGender">
                     <ComboBoxItem Content="Male" BorderBrush="#191D88" BorderThickness="2"/>
                     <ComboBoxItem Content="Female" BorderBrush="#191D88" BorderThickness="2"/>
                 </ComboBox>
@@ -55,7 +55,7 @@
             <StackPanel Orientation="Horizontal" Width="150">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="75" >
                     <TextBlock  Text="Height:" Width="50"/>
-                    <TextBox Width="50" BorderBrush="#191D88" BorderThickness="2">
+                    <TextBox Width="50" BorderBrush="#191D88" BorderThickness="2" Name="txtHeight">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="3"/>
@@ -65,7 +65,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="75" HorizontalAlignment="Right">
                     <TextBlock Text="Weight:" Width="50"/>
-                    <TextBox Width="50" BorderBrush="#191D88" BorderThickness="2">
+                    <TextBox Width="50" BorderBrush="#191D88" BorderThickness="2" Name="txtWeight">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="3"/>
