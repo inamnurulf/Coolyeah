@@ -14,7 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.14" />
     <PackageReference Include="SQLite" Version="3.13.0" />
+    <PackageReference Include="System.Data.Sqlite" Version="1.0.118" />
   </ItemGroup>
 
   <ItemGroup>

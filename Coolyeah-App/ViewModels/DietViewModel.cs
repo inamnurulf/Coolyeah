@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Coolyeah_App.Helper;
+using System.IO;
 
 namespace Coolyeah_App.ViewModels
 {
@@ -16,21 +18,21 @@ namespace Coolyeah_App.ViewModels
 
         public ObservableCollection<Food> MyDataCollection { get; set; }
 
+        private DataBase _sqliteHelper;
+
+
+
+
 
         public DietViewModel()
         {
+
+            _sqliteHelper = new DataBase("\\db\\coolyeah.db");
+            _sqliteHelper.CreateTable(); 
             AddNewItemCommand = new RelayCommand(AddNewItem);
             MyDataCollection = new ObservableCollection<Food>();
             FetchData();
-        }
-        private void FetchData()
-        {
-            var apiData = FetchDataFromApi();
 
-            foreach (var item in apiData)
-            {
-                MyDataCollection.Add(item);
-            }
         }
 
         private IEnumerable<Food> FetchDataFromApi()
@@ -45,7 +47,21 @@ namespace Coolyeah_App.ViewModels
         }
         private void AddNewItem(object parameter)
         {
-            MessageBox.Show("Adding new item");
+            Food newFood = new Food { Notes = "New Food", Value = 10 };
+            _sqliteHelper.InsertFood(newFood);
+
+            MyDataCollection.Clear();
+            FetchData();
+        }
+
+        private void FetchData()
+        {
+            var dbData = _sqliteHelper.ReadAllFood();
+
+            foreach (var item in dbData)
+            {
+                MyDataCollection.Add(item);
+            }
         }
     }
 }
