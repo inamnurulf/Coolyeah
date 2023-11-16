@@ -21,7 +21,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid Height="200" Margin="80,0,80,0">
-                        <lc:Gauge From="0" To="100" Value="50" x:Name="ActivityGauge" />
+                        <lc:Gauge From="0" To="{Binding IdealValue}" Value="{Binding CurrentValue}" x:Name="ActivityGauge" />
                     </Grid>
                 </Grid>
             </StackPanel>

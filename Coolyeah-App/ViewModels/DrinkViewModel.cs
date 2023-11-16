@@ -51,6 +51,7 @@ namespace Coolyeah_App.ViewModels
             }
         }
 
+
         public DrinkViewModel()
         {
             _sqliteHelper = new DataBase("\\db\\coolyeah.db");
@@ -58,7 +59,74 @@ namespace Coolyeah_App.ViewModels
             AddNewItemCommand = new RelayCommand(AddNewItem);
             DeleteItemCommand = new RelayCommand(DeleteItem);
             MyDataCollection = new ObservableCollection<Drink>();
+            SetIdealValue();
+            UpdateCurrentValue();
             FetchData();
+        }
+
+
+        private int _currentValue;
+
+        public int CurrentValue
+        {
+            get { return _currentValue; }
+            set
+            {
+                if (_currentValue != value)
+                {
+                    _currentValue = value;
+                    OnPropertyChanged(nameof(CurrentValue));
+                }
+            }
+        }
+
+        private int _idealValue;
+
+        public int IdealValue
+        {
+            get { return _idealValue; }
+            set
+            {
+                if (_idealValue != value)
+                {
+                    _idealValue = value;
+                    OnPropertyChanged(nameof(IdealValue));
+                }
+            }
+        }
+
+        private void SetIdealValue()
+        {
+            User user = _sqliteHelper.GetUser();
+            if (user == null) { return; }
+            if (user.Sex == "Male")
+            {
+                IdealValue = 3700;
+            }
+            else
+            {
+                IdealValue = 2700;
+            }
+
+        }
+
+        private void UpdateCurrentValue()
+        {
+            CurrentValue = MyDataCollection.Sum(drink => drink.Value);
+        }
+
+        private void FetchData()
+        {
+            var dbData = _sqliteHelper.ReadAllDrink();
+
+            MyDataCollection.Clear();  
+
+            foreach (var item in dbData)
+            {
+                MyDataCollection.Add(item);
+            }
+
+            UpdateCurrentValue();  
         }
 
         private void AddNewItem(object parameter)
@@ -73,31 +141,24 @@ namespace Coolyeah_App.ViewModels
                 };
                 _sqliteHelper.InsertDrink(newDrink);
 
-                MyDataCollection.Clear();
                 NotesText = string.Empty;
                 ValueText = string.Empty;
-                FetchData();
-            }
-        }
 
-        private void FetchData()
-        {
-            var dbData = _sqliteHelper.ReadAllDrink(); 
-
-            foreach (var item in dbData)
-            {
-                MyDataCollection.Add(item);
+                FetchData(); 
             }
         }
 
         private void DeleteItem(object parameter)
         {
-            if (parameter is Drink DrinkToDelete)
+            if (parameter is Drink drinkToDelete)
             {
-                _sqliteHelper.DeleteFood(DrinkToDelete.id);
-                MyDataCollection.Remove(DrinkToDelete);
+                _sqliteHelper.DeleteDrink(drinkToDelete.id);
+                MyDataCollection.Remove(drinkToDelete);
+
+                UpdateCurrentValue(); 
             }
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
