@@ -30,9 +30,7 @@
                 <RadioButton Content="Activity" x:Name="RadioButton4" Style="{StaticResource MenuButtonTheme}" Command="{Binding ActivityViewCommand}"/>
                 <RadioButton Content="Diet" x:Name="RadioButton5" Style="{StaticResource MenuButtonTheme}" Command="{Binding DietViewCommand}"/>
             </StackPanel>
-            <ContentControl Grid.Row="1"
-                            Margin="10,10,10,10"
-                            Content="{Binding CurrentView}">
+            <ContentControl Grid.Row="1" Margin="10,10,10,10" Content="{Binding CurrentView}">
                 
             </ContentControl>
             <Grid>

@@ -12,13 +12,13 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Border Background="#FFFFFF"  Grid.Column="0" Padding="20">
+        <Border Background="#FFFFFF"  Grid.Column="0" Padding="20" Margin="10,10,10,10">
             <StackPanel>
                 <Label Content="Get rest budy, enough for today!" Foreground="#191D88" FontSize="20" HorizontalAlignment="Center"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="7*"/>
-                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
