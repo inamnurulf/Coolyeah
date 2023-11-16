@@ -209,5 +209,64 @@ namespace Coolyeah_App.Helper
             return activities;
         }
 
+        public void CreateTableUser()
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "CREATE TABLE IF NOT EXISTS User (Name TEXT, Sex TEXT, Age INTEGER, Weight REAL, Height REAL)";
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void InsertUser(User user)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "INSERT INTO User (Name, Sex, Age, Weight, Height) VALUES (@Name, @Sex, @Age, @Weight, @Height)";
+                command.Parameters.AddWithValue("@Name", user.Name);
+                command.Parameters.AddWithValue("@Sex", user.Sex);
+                command.Parameters.AddWithValue("@Age", user.Age);
+                command.Parameters.AddWithValue("@Weight", user.Weight);
+                command.Parameters.AddWithValue("@Height", user.Height);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public User GetUser()
+        {
+            User user = null;
+
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "SELECT * FROM User LIMIT 1"; // Assuming you want to get the first user (if any)
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        user = new User
+                        {
+                            Name = Convert.ToString(reader["Name"]),
+                            Sex = Convert.ToString(reader["Sex"]),
+                            Age = Convert.ToInt32(reader["Age"]),
+                            Weight = Convert.ToDouble(reader["Weight"]),
+                            Height = Convert.ToDouble(reader["Height"])
+                        };
+                    }
+                }
+            }
+
+            return user;
+        }
+
+        public bool HasUser()
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "SELECT COUNT(*) FROM User";
+                var result = (long)command.ExecuteScalar();
+                return result > 0;
+            }
+        }
     }
 }
