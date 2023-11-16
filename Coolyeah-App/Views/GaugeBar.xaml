@@ -1,0 +1,19 @@
+﻿<Window x:Class="Coolyeah_App.Views.GaugeBar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:lc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Coolyeah_App.Views"
+        mc:Ignorable="d"
+        Title="Gauge" Height="450" Width="800">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="99*"/>
+            <ColumnDefinition Width="101*"/>
+        </Grid.ColumnDefinitions>
+        <lc:Gauge Grid.ColumnSpan="2" From="0" To="100" Value="50" x:Name="Gauge">
+
+        </lc:Gauge>
+    </Grid>
+</Window>

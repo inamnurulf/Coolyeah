@@ -35,6 +35,9 @@
                             Content="{Binding CurrentView}">
                 
             </ContentControl>
+            <Grid>
+                
+            </Grid>
         </Grid>
 
     </Grid>
