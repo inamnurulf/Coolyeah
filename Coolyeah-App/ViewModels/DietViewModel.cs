@@ -55,30 +55,20 @@ namespace Coolyeah_App.ViewModels
         {
 
             _sqliteHelper = new DataBase("\\db\\coolyeah.db");
-            _sqliteHelper.CreateTable(); 
+            _sqliteHelper.CreateTableFood(); 
             AddNewItemCommand = new RelayCommand(AddNewItem);
             MyDataCollection = new ObservableCollection<Food>();
             FetchData();
 
         }
 
-        private IEnumerable<Food> FetchDataFromApi()
-        {
-            return new List<Food>
-            {
-                new Food { id = 1, Notes = "Value1", Value=2 },
-                new Food { id = 2, Notes = "Value2", Value=5 },
-                new Food { id = 3, Notes = "Value3", Value=4 },
-                new Food { id = 4, Notes = "Value4", Value=2 },
-            };
-        }
         private void AddNewItem(object parameter)
         {
             if (int.TryParse(ValueText, out int value))
             {
                 Food newFood = new Food
                 {
-                    id = MyDataCollection.Count + 1, // You might want to use a more robust method to generate IDs
+                    id = MyDataCollection.Count + 1, 
                     Notes = NotesText,
                     Value = value
                 };

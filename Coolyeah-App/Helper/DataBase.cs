@@ -1,11 +1,7 @@
-﻿using System;
+﻿using Coolyeah_App.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SQLite;
-using System.Windows;
-using Coolyeah_App.Models;
 
 namespace Coolyeah_App.Helper
 {
@@ -43,7 +39,7 @@ namespace Coolyeah_App.Helper
                 return false;
             }
         }
-        public void CreateTable()
+        public void CreateTableFood()
         {
             using (var command = _connection.CreateCommand())
             {
@@ -85,5 +81,133 @@ namespace Coolyeah_App.Helper
             }
             return foods;
         }
+
+        public void CreateTableDrink()
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "CREATE TABLE IF NOT EXISTS Drink (id INTEGER PRIMARY KEY, Notes TEXT, Value INTEGER)";
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void InsertDrink(Drink drink)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "INSERT INTO Drink (Notes, Value) VALUES (@Notes, @Value)";
+                command.Parameters.AddWithValue("@Notes", drink.Notes);
+                command.Parameters.AddWithValue("@Value", drink.Value);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public List<Drink> ReadAllDrink()
+        {
+            List<Drink> drinks = new List<Drink>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "SELECT * FROM Drink";
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Drink drink = new Drink
+                        {
+                            id = Convert.ToInt32(reader["id"]),
+                            Notes = Convert.ToString(reader["Notes"]),
+                            Value = Convert.ToInt32(reader["Value"])
+                        };
+                        drinks.Add(drink);
+                    }
+                }
+            }
+            return drinks;
+        }
+        public void CreateTableSleep()
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "CREATE TABLE IF NOT EXISTS Sleep (id INTEGER PRIMARY KEY, TimeStart TEXT, TimeEnd TEXT)";
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void InsertSleep(Sleep sleep)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "INSERT INTO Sleep (TimeStart, TimeEnd) VALUES (@TimeStart, @TimeEnd)";
+                command.Parameters.AddWithValue("@TimeStart", sleep.TimeStart.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.Parameters.AddWithValue("@TimeEnd", sleep.TimeEnd.ToString("yyyy-MM-dd HH:mm:ss"));
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public List<Sleep> ReadAllSleep()
+        {
+            List<Sleep> sleeps = new List<Sleep>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "SELECT * FROM Sleep";
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Sleep sleep = new Sleep
+                        {
+                            id = Convert.ToInt32(reader["id"]),
+                            TimeStart = Convert.ToDateTime(reader["TimeStart"]),
+                            TimeEnd = Convert.ToDateTime(reader["TimeEnd"])
+                        };
+                        sleeps.Add(sleep);
+                    }
+                }
+            }
+            return sleeps;
+        }
+        public void CreateTableActivity()
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "CREATE TABLE IF NOT EXISTS Activity (id INTEGER PRIMARY KEY, Notes TEXT, Value INTEGER)";
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void InsertActivity(Activity activity)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "INSERT INTO Activity (Notes, Value) VALUES (@Notes, @Value)";
+                command.Parameters.AddWithValue("@Notes", activity.Notes);
+                command.Parameters.AddWithValue("@Value", activity.Value);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public List<Activity> ReadAllActivity()
+        {
+            List<Activity> activities = new List<Activity>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "SELECT * FROM Activity";
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Activity activity = new Activity
+                        {
+                            id = Convert.ToInt32(reader["id"]),
+                            Notes = Convert.ToString(reader["Notes"]),
+                            Value = Convert.ToInt32(reader["Value"])
+                        };
+                        activities.Add(activity);
+                    }
+                }
+            }
+            return activities;
+        }
+
     }
 }
