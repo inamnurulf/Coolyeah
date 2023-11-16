@@ -10,11 +10,35 @@ namespace Coolyeah_App.Helper
     {
         private SQLiteConnection _connection;
 
+        static string FilterPath(string inputPath)
+        {
+            // Split the path by the directory separator '\'
+            string[] pathSegments = inputPath.Split('\\');
+
+            // Find the index of "Coolyeah-App"
+            int index = Array.IndexOf(pathSegments, "Coolyeah-App");
+
+            if (index != -1)
+            {
+                // Join the path segments up to and including "Coolyeah-App"
+                string result = string.Join("\\", pathSegments, 0, index + 1);
+                return result;
+            }
+            else
+            {
+                // Handle the case where "Coolyeah-App" is not found in the path
+                return "Coolyeah-App not found in the path.";
+            }
+        }
+
         public DataBase(string databasePath)
         {
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string directoryPath = AppDomain.CurrentDomain.BaseDirectory;
+            string result = FilterPath(directoryPath);
 
-            string dbPath = "D:\\UGM\\Matkul\\Semester 5\\Junior Project\\Coolyeah\\Coolyeah\\Coolyeah-App" + databasePath;
+            Console.WriteLine(result);
+
+            string dbPath = result + databasePath;
             _connection = new SQLiteConnection($"Data Source={dbPath};Version=3;");
             _connection.Open();
         }
@@ -289,7 +313,7 @@ namespace Coolyeah_App.Helper
 
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "SELECT * FROM User LIMIT 1"; 
+                command.CommandText = "SELECT * FROM User LIMIT 1";
 
                 using (var reader = command.ExecuteReader())
                 {
