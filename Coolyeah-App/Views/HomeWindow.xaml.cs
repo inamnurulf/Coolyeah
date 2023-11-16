@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Coolyeah_App.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,11 @@ namespace Coolyeah_App.Views
         public HomeWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RadioButton3.IsChecked = true;
         }
     }
 }

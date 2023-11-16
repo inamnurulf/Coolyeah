@@ -343,5 +343,25 @@ namespace Coolyeah_App.Helper
                 return result > 0;
             }
         }
+
+        public void DeleteAllData()
+        {
+            string[] tableNames = { "Food", "Drink", "Activity", "Sleep" };
+
+            foreach (var tableName in tableNames)
+            {
+                DeleteAllFromTable(tableName);
+            }
+        }
+
+        private void DeleteAllFromTable(string tableName)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = $"DELETE FROM {tableName}";
+                command.ExecuteNonQuery();
+            }
+        }
+
     }
 }
