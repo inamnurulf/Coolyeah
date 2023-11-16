@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Coolyeah_App.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,12 @@ using System.Windows.Shapes;
 
 namespace Coolyeah_App.Views
 {
-    /// <summary>
-    /// Interaction logic for SleepView.xaml
-    /// </summary>
     public partial class SleepView : UserControl
     {
         public SleepView()
         {
             InitializeComponent();
+            DataContext = new SleepViewModel();
         }
     }
 }

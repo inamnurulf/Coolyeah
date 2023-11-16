@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Windows;
 
 namespace Coolyeah_App.Helper
 {
@@ -13,7 +14,7 @@ namespace Coolyeah_App.Helper
         {
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-            string dbPath = "C:\\Users\\HP\\source\\repos\\Coolyeah2\\Coolyeah-App" + databasePath;
+            string dbPath = "D:\\kuliah\\sem 5\\coolyeah updated\\Coolyeah\\Coolyeah-App" + databasePath;
             _connection = new SQLiteConnection($"Data Source={dbPath};Version=3;");
             _connection.Open();
         }
@@ -93,12 +94,19 @@ namespace Coolyeah_App.Helper
 
         public void InsertDrink(Drink drink)
         {
-            using (var command = _connection.CreateCommand())
+            try
             {
-                command.CommandText = "INSERT INTO Drink (Notes, Value) VALUES (@Notes, @Value)";
-                command.Parameters.AddWithValue("@Notes", drink.Notes);
-                command.Parameters.AddWithValue("@Value", drink.Value);
-                command.ExecuteNonQuery();
+                using (var command = _connection.CreateCommand())
+                {
+                    command.CommandText = "INSERT INTO Drink (Notes, Value) VALUES (@Notes, @Value)";
+                    command.Parameters.AddWithValue("@Notes", drink.Notes);
+                    command.Parameters.AddWithValue("@Value", drink.Value);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inserting drink: {ex.Message}");
             }
         }
 
@@ -123,48 +131,6 @@ namespace Coolyeah_App.Helper
                 }
             }
             return drinks;
-        }
-        public void CreateTableSleep()
-        {
-            using (var command = _connection.CreateCommand())
-            {
-                command.CommandText = "CREATE TABLE IF NOT EXISTS Sleep (id INTEGER PRIMARY KEY, TimeStart TEXT, TimeEnd TEXT)";
-                command.ExecuteNonQuery();
-            }
-        }
-
-        public void InsertSleep(Sleep sleep)
-        {
-            using (var command = _connection.CreateCommand())
-            {
-                command.CommandText = "INSERT INTO Sleep (TimeStart, TimeEnd) VALUES (@TimeStart, @TimeEnd)";
-                command.Parameters.AddWithValue("@TimeStart", sleep.TimeStart.ToString("yyyy-MM-dd HH:mm:ss"));
-                command.Parameters.AddWithValue("@TimeEnd", sleep.TimeEnd.ToString("yyyy-MM-dd HH:mm:ss"));
-                command.ExecuteNonQuery();
-            }
-        }
-
-        public List<Sleep> ReadAllSleep()
-        {
-            List<Sleep> sleeps = new List<Sleep>();
-            using (var command = _connection.CreateCommand())
-            {
-                command.CommandText = "SELECT * FROM Sleep";
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Sleep sleep = new Sleep
-                        {
-                            id = Convert.ToInt32(reader["id"]),
-                            TimeStart = Convert.ToDateTime(reader["TimeStart"]),
-                            TimeEnd = Convert.ToDateTime(reader["TimeEnd"])
-                        };
-                        sleeps.Add(sleep);
-                    }
-                }
-            }
-            return sleeps;
         }
         public void CreateTableActivity()
         {
@@ -208,6 +174,50 @@ namespace Coolyeah_App.Helper
             }
             return activities;
         }
+
+        public void CreateTableSleep()
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "CREATE TABLE IF NOT EXISTS Sleep (id INTEGER PRIMARY KEY, Notes TEXT, Value INTEGER)";
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void InsertSleep(Sleep sleep)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "INSERT INTO Sleep (Notes, Value) VALUES (@Notes, @Value)";
+                command.Parameters.AddWithValue("@Notes", sleep.Notes);
+                command.Parameters.AddWithValue("@Value", sleep.Value);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public List<Sleep> ReadAllSleep()
+        {
+            List<Sleep> sleeps = new List<Sleep>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "SELECT * FROM Sleep";
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Sleep sleep = new Sleep
+                        {
+                            id = Convert.ToInt32(reader["id"]),
+                            Notes = Convert.ToString(reader["Notes"]),
+                            Value = Convert.ToInt32(reader["Value"])
+                        };
+                        sleeps.Add(sleep);
+                    }
+                }
+            }
+            return sleeps;
+        }
+
 
     }
 }

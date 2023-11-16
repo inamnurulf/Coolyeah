@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Coolyeah_App.Views
 {
-    /// <summary>
-    /// Interaction logic for DietView.xaml
-    /// </summary>
     public partial class DietView : UserControl
     {
         public DietView()

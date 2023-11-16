@@ -12,17 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Coolyeah_App.ViewModels;
+
 
 namespace Coolyeah_App.Views
 {
-    /// <summary>
-    /// Interaction logic for DrinkView.xaml
-    /// </summary>
+
     public partial class DrinkView : UserControl
     {
         public DrinkView()
         {
             InitializeComponent();
+            DataContext = new DrinkViewModel();
         }
     }
 }
