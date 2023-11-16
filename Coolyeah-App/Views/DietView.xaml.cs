@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Coolyeah_App.Views
 {
     /// <summary>
-    /// Interaction logic for HomeWindow.xaml
+    /// Interaction logic for DietView.xaml
     /// </summary>
-    public partial class HomeWindow : Window
+    public partial class DietView : UserControl
     {
-        public HomeWindow()
+        public DietView()
         {
             InitializeComponent();
         }

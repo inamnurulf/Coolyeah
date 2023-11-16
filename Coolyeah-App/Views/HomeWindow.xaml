@@ -4,20 +4,33 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coolyeah_App.Views"
+        xmlns:viewModel="clr-namespace:Coolyeah_App.ViewModels"
         mc:Ignorable="d"
         Title="HomeWindow" Height="450" Width="800">
+    
+    <Window.DataContext>
+        <viewModel:HomeViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.85*"/>
                 <RowDefinition Height="0.15*"/>
+                <RowDefinition Height="0.85*"/>
             </Grid.RowDefinitions>
-            <Rectangle Grid.Row="1" Fill="#191D88"></Rectangle>
-            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <RadioButton Content="Option 1" x:Name="RadioButton1" Checked="RadioButton_Checked"/>
-                <RadioButton Content="Option 2" x:Name="RadioButton2" Checked="RadioButton_Checked"/>
-                <RadioButton Content="Option 3" x:Name="RadioButton3" Checked="RadioButton_Checked"/>
+            <Rectangle Grid.Row="0" Fill="#191D88"></Rectangle>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <RadioButton Content="Drink" x:Name="RadioButton1" Style="{StaticResource MenuButtonTheme}" Command="{Binding DrinkViewCommand}"/>
+                <RadioButton Content="Sleep" x:Name="RadioButton2" Style="{StaticResource MenuButtonTheme}" Command="{Binding SleepViewCommand}"/>
+                <RadioButton Content="Home" x:Name="RadioButton3" Style="{StaticResource MenuButtonTheme}" Command="{Binding HomePageViewCommand}"/>
+                <RadioButton Content="Activity" x:Name="RadioButton4" Style="{StaticResource MenuButtonTheme}" Command="{Binding ActivityViewCommand}"/>
+                <RadioButton Content="Diet" x:Name="RadioButton5" Style="{StaticResource MenuButtonTheme}" Command="{Binding DietViewCommand}"/>
             </StackPanel>
+            <ContentControl Grid.Row="1"
+                            Margin="10,10,10,10"
+                            Content="{Binding CurrentView}">
+                
+            </ContentControl>
         </Grid>
 
     </Grid>
