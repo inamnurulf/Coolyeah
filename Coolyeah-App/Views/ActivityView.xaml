@@ -42,7 +42,9 @@
             <Border Grid.Row="1">
                 <StackPanel>
                     <StackPanel Margin="10">
+                        <Label Content="Notes :"></Label>
                         <TextBox Text="{Binding NotesText, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+                        <Label Content="Value(hour) :"></Label>
                         <TextBox Text="{Binding ValueText, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
 
                     </StackPanel>

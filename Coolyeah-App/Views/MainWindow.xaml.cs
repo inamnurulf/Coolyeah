@@ -1,20 +1,8 @@
-﻿using Coolyeah_App.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Coolyeah_App.Helper;
+using Coolyeah_App.Models;
+using Coolyeah_App.Views;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Coolyeah_App.Models;
-using Coolyeah_App.Helper;
 
 
 namespace Coolyeah_App
@@ -33,44 +21,40 @@ namespace Coolyeah_App
             _sqliteHelper = new DataBase("\\db\\coolyeah.db");
             _sqliteHelper.CreateTableUser();
             InitializeComponent();
+            if (_sqliteHelper.HasUser())
+            {
+                homeWindow.Show();
+                Close();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (_sqliteHelper.HasUser())
+
+            if (int.TryParse(txtAge.Text, out int age))
             {
-                MessageBox.Show("A user already exists. You can only input once.");
+                double.TryParse(txtWeight.Text, out double weight);
+                double.TryParse(txtHeight.Text, out double height);
+
+                var user = new User
+                {
+                    Name = txtName.Text,
+                    Age = age,
+                    Sex = (string)((ComboBoxItem)comboGender.SelectedItem)?.Content,
+                    Weight = weight,
+                    Height = height
+                };
+
+                _sqliteHelper.InsertUser(user);
+
+                homeWindow.Show();
+                Close();
+
             }
             else
             {
-
-                if (int.TryParse(txtAge.Text, out int age))
-                {
-                    // Access user details from the ViewModel
-                    double.TryParse(txtWeight.Text, out double weight);
-                    double.TryParse(txtHeight.Text, out double height);
-
-                    var user = new User
-                    {
-                        Name = txtName.Text,
-                        Age = age,
-                        Sex = (string)((ComboBoxItem)comboGender.SelectedItem)?.Content,
-                        Weight = weight,
-                        Height = height
-                    };
-
-                    _sqliteHelper.InsertUser(user);
-
-
-                    
-                }
-                else
-                {
-                    MessageBox.Show("Please enter a valid age (numeric value).");
-                }
+                MessageBox.Show("Please enter a valid age (numeric value).");
             }
-            homeWindow.Show();
-            Close();
         }
 
     }
