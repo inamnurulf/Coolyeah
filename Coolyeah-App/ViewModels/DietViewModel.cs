@@ -9,10 +9,11 @@ using System.Windows;
 using System.Windows.Input;
 using Coolyeah_App.Helper;
 using System.IO;
+using System.ComponentModel;
 
 namespace Coolyeah_App.ViewModels
 {
-    class DietViewModel
+    class DietViewModel : INotifyPropertyChanged
     {
         public ICommand AddNewItemCommand { get; set; }
 
@@ -20,7 +21,33 @@ namespace Coolyeah_App.ViewModels
 
         private DataBase _sqliteHelper;
 
+        private string _notesText;
+        public string NotesText
+        {
+            get { return _notesText; }
+            set
+            {
+                if (_notesText != value)
+                {
+                    _notesText = value;
+                    OnPropertyChanged(nameof(NotesText));
+                }
+            }
+        }
 
+        private string _valueText;
+        public string ValueText
+        {
+            get { return _valueText; }
+            set
+            {
+                if (_valueText != value)
+                {
+                    _valueText = value;
+                    OnPropertyChanged(nameof(ValueText));
+                }
+            }
+        }
 
 
 
@@ -47,11 +74,23 @@ namespace Coolyeah_App.ViewModels
         }
         private void AddNewItem(object parameter)
         {
-            Food newFood = new Food { Notes = "New Food", Value = 10 };
-            _sqliteHelper.InsertFood(newFood);
+            if (int.TryParse(ValueText, out int value))
+            {
+                Food newFood = new Food
+                {
+                    id = MyDataCollection.Count + 1, // You might want to use a more robust method to generate IDs
+                    Notes = NotesText,
+                    Value = value
+                };
+                _sqliteHelper.InsertFood(newFood);
 
-            MyDataCollection.Clear();
-            FetchData();
+                MyDataCollection.Clear();
+                NotesText = string.Empty;
+                ValueText = string.Empty;
+                FetchData();
+
+            }
+
         }
 
         private void FetchData()
@@ -62,6 +101,13 @@ namespace Coolyeah_App.ViewModels
             {
                 MyDataCollection.Add(item);
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
