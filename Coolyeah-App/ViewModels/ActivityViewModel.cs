@@ -16,6 +16,8 @@ namespace Coolyeah_App.ViewModels
     class ActivityViewModel : INotifyPropertyChanged
     {
         public ICommand AddNewItemCommand { get; set; }
+        public ICommand DeleteItemCommand { get; set; }
+
 
         public ObservableCollection<Activity> MyDataCollection { get; set; }
 
@@ -54,6 +56,7 @@ namespace Coolyeah_App.ViewModels
             _sqliteHelper = new DataBase("\\db\\coolyeah.db");
             _sqliteHelper.CreateTableActivity(); 
             AddNewItemCommand = new RelayCommand(AddNewItem);
+            DeleteItemCommand = new RelayCommand(DeleteItem);
             MyDataCollection = new ObservableCollection<Activity>();
             FetchData();
         }
@@ -85,6 +88,14 @@ namespace Coolyeah_App.ViewModels
             foreach (var item in dbData)
             {
                 MyDataCollection.Add(item);
+            }
+        }
+        private void DeleteItem(object parameter)
+        {
+            if (parameter is Activity ActivitToDelete)
+            {
+                _sqliteHelper.DeleteActivity(ActivitToDelete.id);
+                MyDataCollection.Remove(ActivitToDelete);
             }
         }
 

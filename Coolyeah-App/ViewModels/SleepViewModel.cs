@@ -16,6 +16,8 @@ namespace Coolyeah_App.ViewModels
     class SleepViewModel : INotifyPropertyChanged
     {
         public ICommand AddNewItemCommand { get; set; }
+        public ICommand DeleteItemCommand { get; set; }
+
 
         public ObservableCollection<Sleep> MyDataCollection { get; set; }
 
@@ -54,6 +56,7 @@ namespace Coolyeah_App.ViewModels
             _sqliteHelper = new DataBase("\\db\\coolyeah.db");
             _sqliteHelper.CreateTableSleep();
             AddNewItemCommand = new RelayCommand(AddNewItem);
+            DeleteItemCommand = new RelayCommand(DeleteItem);
             MyDataCollection = new ObservableCollection<Sleep>();
             FetchData();
         }
@@ -84,6 +87,15 @@ namespace Coolyeah_App.ViewModels
             foreach (var item in dbData)
             {
                 MyDataCollection.Add(item);
+            }
+        }
+
+        private void DeleteItem(object parameter)
+        {
+            if (parameter is Sleep SleepToDelete)
+            {
+                _sqliteHelper.DeleteFood(SleepToDelete.id);
+                MyDataCollection.Remove(SleepToDelete);
             }
         }
 
