@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Coolyeah_App.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,20 @@ using System.Windows.Shapes;
 
 namespace Coolyeah_App.Views
 {
-    /// <summary>
-    /// Interaction logic for HomeView.xaml
-    /// </summary>
     public partial class HomeView : UserControl
     {
+        private HomePageViewModel _viewModel;
+
         public HomeView()
         {
             InitializeComponent();
+            _viewModel = new HomePageViewModel();
+            DataContext = _viewModel;
+        }
+
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            await _viewModel.FetchQuote();
         }
     }
 }

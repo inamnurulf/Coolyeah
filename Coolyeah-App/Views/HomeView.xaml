@@ -5,20 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Coolyeah_App.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid>
-            <TextBlock Text="Welcome Back" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,-60,0,0" FontWeight="Bold"></TextBlock>
-            <TextBlock Text="Keep Productive and Healthy!" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,00,0,0" FontWeight="Bold"></TextBlock>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBlock Text="Welcome Back" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,-60,0,0" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Keep Productive and Healthy!" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,00,0,0" FontWeight="Bold"></TextBlock>
+            </Grid>
+            <Grid Grid.Row="1">
+                <TextBlock Text="Today's quotes for ya: " FontSize="15" HorizontalAlignment="Left" Margin="40,00,0,0" FontWeight="Bold" Width="350"></TextBlock>
+                <TextBlock Text="{Binding CurrentQuote}" FontSize="14" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="40,34,0,13" Width="332"/>
+            </Grid>
         </Grid>
+
         <Grid Grid.Column="1">
-            <Image Name="HomeIllustration" Source="/Assets/Illustration.png" Width="350" Height="350" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-100,-20,0,0"/>
+            <Image Name="HomeIllustration" Source="/Assets/Illustration.png" Width="350" Height="350" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
-        
+
     </Grid>
 
 </UserControl>
