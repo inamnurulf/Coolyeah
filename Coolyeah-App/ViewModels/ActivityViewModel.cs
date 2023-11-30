@@ -143,6 +143,8 @@ namespace Coolyeah_App.ViewModels
             {
                 MyDataCollection.Add(item);
             }
+            UpdateCurrentValue();
+
         }
         private void DeleteItem(object parameter)
         {
