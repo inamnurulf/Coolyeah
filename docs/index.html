@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Coolyeah</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+</style>
+</head>
+<body>
+
+
+<div class="w3-top">
+  <div class="w3-bar w3-blue w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="#techstack" class="w3-bar-item w3-button w3-padding-large w3-hide-small">TECHSTACK</a>
+    <a href="#ui" class="w3-bar-item w3-button w3-padding-large w3-hide-small">UI</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
+    </div>
+  </div>
+</div>
+
+<div id="navDemo" class="w3-bar-block w3-blue w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#techstack" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TECHSTACK</a>
+  <a href="#ui" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">UI</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
+</div>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+  <div class="w3-display-container w3-center">
+    <img src="/docs/assets/Logo_Full.png" style="width:60%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+    </div>
+  </div>
+
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" >
+    <h2 class="w3-wide">Coolyeah</h2>
+    <p class="w3-opacity"><i>Windows Presentation Foundation</i></p>
+    <p class="w3-justify">Discover the power of Coolyeah, the ultimate app designed to empower students in managing their schedules and tracking their productivity cycles while maintaining a healthy nutritional balance. Stay organized, stay productive, and stay healthy with Coolyeah!</p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-third">
+        <p>In'am Nurul Fuady</p>
+        <p>21/479707/TK/52919</p>
+      </div>
+      <div class="w3-third">
+        <p>Rhafif Prasetyo</p>
+        <p>21/477018/TK/52532</p>
+      </div>
+      <div class="w3-third">
+        <p>Gifto Ramadha</p>
+        <p>21/480271/TK/52996</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-blue" id="techstack">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center">TECHSTACK</h2>
+      <p class="w3-opacity w3-center"><i>We were using :</i></p><br>
+
+      <ul class="w3-ul w3-border w3-white w3-text-grey">
+        <li class="w3-padding">Windows Presentation Foundation </li>
+        <li class="w3-padding">SQlite </li>
+        <li class="w3-padding">Newsoftjson </li>
+        <li class="w3-padding">LiveChart.wpf</li>
+        <li class="w3-padding">EasyModblus</li>
+        <li class="w3-padding">API from : https://rapidapi.com/martin.svoboda/api/quotes15/</li>
+      </ul>
+
+      <div class="w3-row-padding w3-padding-32" style="margin:0 -16px" id="ui">
+        <div class="w3-third w3-margin-bottom">
+          <img src="/docs/assets/landing_page.png" alt="Landing Page" style="width:100%" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <p><b>Landing Page</b></p>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <img src="/docs/assets/home_page.png" alt="Home Page" style="width:100%" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <p><b>Home Page</b></p>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <img src="/docs/assets/main_page.png" alt="Details Page" style="width:100%" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <p><b>Details Page</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" >
+    <h2 class="w3-wide">ERD</h2>
+    <p class="w3-opacity"><i>Entity–relationship Diagram</i></p>
+    <img src="/rhadhadyClassDiagram.png" style="width:60%">
+  </div>
+
+  <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge" id="contact">
+    <a href="https://github.com/inamnurulf/Coolyeah">
+        <i class="fa fa-github w3-hover-opacity"> Our repository</i>
+    </a>
+  </footer>
+  
+</div>
+<script>
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+
+</script>
+
+</body>
+</html>
